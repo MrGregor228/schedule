@@ -1,0 +1,258 @@
+@charset "UTF-8";
+@import "https://fonts.googleapis.com/css2?family=Oswald:wght@200;300;400&display=swap";
+/* line 5, C:/Ruby26-x64/lib/ruby/gems/2.6.0/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font: inherit;
+  font-size: 100%;
+  vertical-align: baseline;
+}
+
+/* line 22, C:/Ruby26-x64/lib/ruby/gems/2.6.0/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+html {
+  line-height: 1;
+}
+
+/* line 24, C:/Ruby26-x64/lib/ruby/gems/2.6.0/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+ol, ul {
+  list-style: none;
+}
+
+/* line 26, C:/Ruby26-x64/lib/ruby/gems/2.6.0/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+/* line 28, C:/Ruby26-x64/lib/ruby/gems/2.6.0/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+caption, th, td {
+  text-align: left;
+  font-weight: normal;
+  vertical-align: middle;
+}
+
+/* line 30, C:/Ruby26-x64/lib/ruby/gems/2.6.0/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+q, blockquote {
+  quotes: none;
+}
+/* line 103, C:/Ruby26-x64/lib/ruby/gems/2.6.0/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+q:before, q:after, blockquote:before, blockquote:after {
+  content: "";
+  content: none;
+}
+
+/* line 32, C:/Ruby26-x64/lib/ruby/gems/2.6.0/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+a img {
+  border: none;
+}
+
+/* line 116, C:/Ruby26-x64/lib/ruby/gems/2.6.0/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+article, aside, details, figcaption, figure, footer, header, hgroup, main, menu, nav, section, summary {
+  display: block;
+}
+
+/* line 3, ../scss/style.scss */
+* {
+  box-sizing: border-box;
+}
+
+/* line 7, ../scss/style.scss */
+.schedule-container {
+  max-width: 768px;
+  margin-right: auto;
+  margin-left: auto;
+  font-family: 'Oswald', sans-serif;
+}
+/* line 14, ../scss/style.scss */
+.schedule-container .schedule-navigation-panel ul {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+@media screen and (max-width: 600px) {
+  /* line 21, ../scss/style.scss */
+  .schedule-container .schedule-navigation-panel ul li {
+    flex: 1 1 50%;
+    box-shadow: 0 0 0 1px gray;
+  }
+}
+/* line 27, ../scss/style.scss */
+.schedule-container .schedule-navigation-panel ul li {
+  flex-basis: auto;
+  font-size: 1.5em;
+  font-weight: normal;
+  background-color: #f7f7f7;
+  cursor: pointer;
+  text-align: center;
+  padding: 5px 10px;
+}
+/* line 36, ../scss/style.scss */
+.schedule-container .schedule-navigation-panel ul li.active {
+  background-color: #1ba4ee;
+  color: white;
+}
+/* line 41, ../scss/style.scss */
+.schedule-container .schedule-navigation-panel ul li span {
+  font-size: 14px;
+  font-weight: 200;
+}
+/* line 49, ../scss/style.scss */
+.schedule-container .lectures-container {
+  display: flex;
+  flex-direction: column;
+  margin-top: 5vh;
+  padding-right: 15px;
+  padding-left: 15px;
+}
+/* line 56, ../scss/style.scss */
+.schedule-container .lectures-container .lecture {
+  position: relative;
+  top: 20px;
+  opacity: 0;
+  animation: slideUp .2s linear 1s 1 both;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  box-shadow: 0 0 0 1px lightgray;
+  border-radius: 4px;
+  background: #fcfcfc;
+  overflow: hidden;
+}
+/* line 70, ../scss/style.scss */
+.schedule-container .lectures-container .lecture:not(:first-child) {
+  margin-top: 20px;
+}
+/* line 74, ../scss/style.scss */
+.schedule-container .lectures-container .lecture:last-child {
+  margin-bottom: 20px;
+}
+/* line 78, ../scss/style.scss */
+.schedule-container .lectures-container .lecture .numer-of-lecture {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 7px 7px 30px 30px;
+  background-color: #1ba4ee;
+  color: white;
+  clip-path: polygon(0 0, 100% 0, 100% 100%);
+}
+/* line 88, ../scss/style.scss */
+.schedule-container .lectures-container .lecture .person {
+  flex-basis: 35%;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  padding: 15px 10px;
+  line-height: 1.75;
+}
+/* line 96, ../scss/style.scss */
+.schedule-container .lectures-container .lecture .person .person-img {
+  width: 15vh;
+  height: 15vh;
+  border-radius: 50%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+  margin-right: auto;
+  margin-left: auto;
+}
+/* line 108, ../scss/style.scss */
+.schedule-container .lectures-container .lecture .description {
+  flex-basis: 65%;
+  padding: 0 15px 15px 15px;
+}
+/* line 112, ../scss/style.scss */
+.schedule-container .lectures-container .lecture .description .time {
+  color: white;
+  margin-bottom: 15px;
+  max-width: max-content;
+  display: flex;
+  flex-direction: row;
+}
+/* line 120, ../scss/style.scss */
+.schedule-container .lectures-container .lecture .description .time .show-lecture-time {
+  padding: 10px 20px 10px 15px;
+  background-color: #1ba4ee;
+}
+/* line 125, ../scss/style.scss */
+.schedule-container .lectures-container .lecture .description .time .status {
+  font-size: 15px;
+  margin-left: -20px;
+  padding: 10px 30px 10px 15px;
+  background-color: #c01a3b;
+  clip-path: polygon(0 0, 100% 0%, 85% 50%, 100% 100%, 0 100%);
+}
+/* line 134, ../scss/style.scss */
+.schedule-container .lectures-container .lecture .description .heading {
+  font-size: 20px;
+}
+/* line 138, ../scss/style.scss */
+.schedule-container .lectures-container .lecture .description .auditory {
+  margin-top: 15px;
+  text-align: right;
+}
+/* line 142, ../scss/style.scss */
+.schedule-container .lectures-container .lecture .description .auditory:before {
+  content: "Аудтория: ";
+}
+/* line 149, ../scss/style.scss */
+.schedule-container .lectures-container .lecture .progress-bar {
+  height: 5px;
+  width: 100%;
+  max-width: 100%;
+}
+/* line 154, ../scss/style.scss */
+.schedule-container .lectures-container .lecture .progress-bar .bar {
+  background-color: red;
+  width: 0%;
+  height: 100%;
+  transition: width .3s linear;
+}
+@media screen and (max-width: 465px) {
+  /* line 56, ../scss/style.scss */
+  .schedule-container .lectures-container .lecture {
+    flex-direction: column;
+    align-items: baseline;
+  }
+  /* line 166, ../scss/style.scss */
+  .schedule-container .lectures-container .lecture .person {
+    flex-basis: 150px;
+    width: 100%;
+  }
+  /* line 171, ../scss/style.scss */
+  .schedule-container .lectures-container .lecture .description {
+    flex-basis: 100%;
+    width: 100%;
+  }
+  /* line 175, ../scss/style.scss */
+  .schedule-container .lectures-container .lecture .description .time {
+    margin-left: -15px;
+  }
+}
+
+@keyframes slideUp {
+  0% {
+    top: 20px;
+    opacity: 0;
+  }
+  100% {
+    top: 0px;
+    opacity: 1;
+  }
+}

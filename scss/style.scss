@@ -1,0 +1,195 @@
+@import "https://fonts.googleapis.com/css2?family=Oswald:wght@200;300;400&display=swap";
+@import "compass/reset";
+* {
+    box-sizing: border-box;
+}
+
+.schedule-container {
+    max-width: 768px;
+    margin-right: auto;
+    margin-left: auto;
+    font-family: 'Oswald', sans-serif;
+
+    .schedule-navigation-panel {
+        ul {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: space-between;
+
+            @media screen and (max-width:600px) {
+                li {
+                    flex: 1 1 50%;
+                    box-shadow: 0 0 0 1px gray;
+                }
+            }
+
+            li {
+                flex-basis: auto;
+                font-size: 1.5em;
+                font-weight: normal;
+                background-color: #f7f7f7;
+                cursor: pointer;
+                text-align: center;
+                padding: 5px 10px;
+
+                &.active {
+                    background-color: #1ba4ee;
+                    color: white;
+                }
+
+                span {
+                    font-size: 14px;
+                    font-weight: 200;
+                }
+            }
+        }
+    }
+
+    .lectures-container {
+        display: flex;
+        flex-direction: column;
+        margin-top: 5vh;
+        padding-right: 15px;
+        padding-left: 15px;
+
+        .lecture {
+            position: relative;
+            top: 20px;
+            opacity: 0;
+            animation: slideUp .2s linear 1s 1 both;
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            align-items: center;
+            box-shadow: 0 0 0 1px lightgray;
+            border-radius: 4px;
+            background: lighten(#f7f7f7, 2%);
+            overflow: hidden;
+
+            &:not(:first-child) {
+                margin-top: 20px;
+            }
+
+            &:last-child {
+                margin-bottom: 20px;
+            }
+
+            .numer-of-lecture {
+                position: absolute;
+                top: 0;
+                right: 0;
+                padding: 7px 7px 30px 30px;
+                background-color: #1ba4ee;
+                color: white;
+                clip-path: polygon(0 0, 100% 0, 100% 100%);
+            }
+
+            .person {
+                flex-basis: 35%;
+                display: flex;
+                flex-direction: column;
+                text-align: center;
+                padding: 15px 10px;
+                line-height: 1.75;
+
+                .person-img {
+                    width: 15vh;
+                    height: 15vh;
+                    border-radius: 50%;
+                    background-repeat: no-repeat;
+                    background-size: cover;
+                    background-position: center center;
+                    margin-right: auto;
+                    margin-left: auto;
+                }
+            }
+
+            .description {
+                flex-basis: 65%;
+                padding: 0 15px 15px 15px;
+
+                .time {
+                    color: white;
+                    margin-bottom: 15px;
+
+                    max-width: max-content;
+                    display: flex;
+                    flex-direction: row;
+
+                    .show-lecture-time {
+                        padding: 10px 20px 10px 15px;
+                        background-color: #1ba4ee;
+                    }
+
+                    .status {
+                        font-size: 15px;
+                        margin-left: -20px;
+                        padding: 10px 30px 10px 15px;
+                        background-color: #c01a3b;
+                        clip-path: polygon(0 0, 100% 0%, 85% 50%, 100% 100%, 0 100%);
+                    }
+                }
+
+                .heading {
+                    font-size: 20px;
+                }
+
+                .auditory {
+                    margin-top: 15px;
+                    text-align: right;
+
+                    &:before {
+                        content: "Аудтория: ";
+
+                    }
+                }
+            }
+
+            .progress-bar {
+                height: 5px;
+                width: 100%;
+                max-width: 100%;
+
+                .bar {
+                    background-color: red;
+                    width: 0%;
+                    height: 100%;
+                    transition: width .3s linear;
+                }
+            }
+
+            @media screen and (max-width:465px) {
+                flex-direction: column;
+                align-items: baseline;
+
+                .person {
+                    flex-basis: 150px;
+                    width: 100%;
+                }
+
+                .description {
+                    flex-basis: 100%;
+                    width: 100%;
+
+                    .time {
+                        margin-left: -15px;
+                    }
+                }
+
+            }
+        }
+    }
+}
+
+@keyframes slideUp {
+    0% {
+        top: 20px;
+        opacity: 0;
+    }
+
+    100% {
+        top: 0px;
+        opacity: 1;
+    }
+}
