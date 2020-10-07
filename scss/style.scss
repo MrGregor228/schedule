@@ -21,7 +21,8 @@ button {
     max-height: max-content;
     font-family: 'Oswald', sans-serif;
     background-color: rgba(#fff, .7);
-
+    margin-right: auto;
+    margin-left: auto;
     padding-right: 15px;
     padding-left: 15px;
 
@@ -53,9 +54,6 @@ button {
             }
 
             li {
-                // &:first-child {
-                //     order:6;
-                // }
                 &.active {
                     button {
                         background-color: #1ba4ee;
@@ -90,6 +88,28 @@ button {
                         font-weight: 200;
                     }
                 }
+            }
+        }
+        .week-cont {
+            display: flex;
+            flex-direction: row;
+            .numerator, .denumerator {
+                margin-top: 25px;
+                text-align: center;
+                flex:1 1 50%;
+                box-shadow: 0 0 0 1px lightgray;
+                border-radius: 4px;
+                padding: 10px;
+                &.active {
+                    background-color: green;
+                    color:white;
+                }
+            }
+            .numerator {
+                margin-right: 5px;
+            }
+            .denumerator {
+                margin-left: 5px;
             }
         }
     }

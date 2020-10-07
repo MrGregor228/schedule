@@ -20,6 +20,8 @@ let span__dateTime = document.querySelectorAll(".date-time"),
 
     lectures__container = document.querySelector('.lectures-container'),
     lectures = document.querySelectorAll(".lecture"),
+    numerator = document.querySelector('.numerator'),
+    denumerator = document.querySelector('.denumerator'),
 
     daysToChill = 5 || 6 || 7,
 
@@ -44,14 +46,21 @@ let span__dateTime = document.querySelectorAll(".date-time"),
 if (today__date >= 5 && today >= 1 && today__date < 12) {
     url = url__second;
     daysToChill = 0 || 5 || 6 || 7;
+    numerator.classList.remove('active');
+    denumerator.classList.add('active');
 } else if (today__date >= 12 && today__date < 19) {
     url = url__first;
+    numerator.classList.add('active');
+    denumerator.classList.remove('active');
 } else if (today__date >= 19 && today__date < 28) {
     url = url__second;
+    numerator.classList.remove('active');
+    denumerator.classList.add('active');
     daysToChill = 0 || 5 || 6 || 7;
 }
 
 getData(url).then((data) => {
+    console.log(data);
 
     span__dateTime.forEach((item, i) => {
         item.textContent = data[i].date;
