@@ -26,6 +26,19 @@ button {
     padding-right: 15px;
     padding-left: 15px;
 
+    .schedule-heading {
+        background-color:#1ba4ee;
+        color: white;
+        padding: 15px;
+        z-index: 999;
+        margin-bottom: 30px;
+        text-align: center;
+        font-size: 20px;
+        border-bottom-left-radius: 5px;
+        border-bottom-right-radius: 5px;
+        box-shadow: 0 3px 5px lightgray;
+    }
+
     .schedule-navigation-panel {
         ul {
             display: flex;
@@ -50,7 +63,7 @@ button {
                         width: 100%;
                         box-shadow: 0 0 0 1px gray;
                     }
-                }
+                }                
             }
 
             li {
@@ -90,27 +103,45 @@ button {
                 }
             }
         }
+
         .week-cont {
             display: flex;
             flex-direction: row;
-            .numerator, .denumerator {
-                margin-top: 25px;
-                text-align: center;
-                flex:1 1 50%;
-                box-shadow: 0 0 0 1px lightgray;
-                border-radius: 4px;
-                padding: 10px;
-                &.active {
-                    background-color: green;
-                    color:white;
-                }
-            }
             .numerator {
                 margin-right: 5px;
             }
+
             .denumerator {
                 margin-left: 5px;
             }
+            .numerator,
+            .denumerator {
+                margin-top: 25px;
+                text-align: center;
+                flex: 1 1 50%;
+                box-shadow: 0 0 0 1px lightgray;
+                border-radius: 4px;
+                padding: 10px;
+
+                &.active {
+                    background-color: green;
+                    color: white;
+                }
+                @media screen and (max-width:660px) {
+                    
+                        &.numerator {
+                            margin-right: 5px;
+                            margin-left: 5px;
+                        }
+    
+                        &.denumerator {
+                            margin-left: 5px;
+                            margin-right: 5px;
+                        }
+                    
+                }
+            }
+            
         }
     }
 
@@ -147,13 +178,15 @@ button {
         flex-direction: column;
         margin-top: 5vh;
         transition: height .3s linear;
-
+        @media screen and (max-width:660px) {
+            padding:0 5px;
+        }
         .lecture {
             position: relative;
             top: 20px;
             opacity: 0;
             -webkit-animation: slideUp .2s linear .2s 1 both;
-                    animation: slideUp .2s linear .2s 1 both;
+            animation: slideUp .2s linear .2s 1 both;
             display: flex;
             flex-direction: row;
             flex-wrap: wrap;
@@ -179,7 +212,7 @@ button {
                 background-color: #1ba4ee;
                 color: white;
                 -webkit-clip-path: polygon(0 0, 100% 0, 100% 100%);
-                        clip-path: polygon(0 0, 100% 0, 100% 100%);
+                clip-path: polygon(0 0, 100% 0, 100% 100%);
             }
 
             .person {
@@ -229,7 +262,7 @@ button {
                         padding: 10px 30px 10px 15px;
                         background-color: #c01a3b;
                         -webkit-clip-path: polygon(0 0, 100% 0%, 85% 50%, 100% 100%, 0 100%);
-                                clip-path: polygon(0 0, 100% 0%, 85% 50%, 100% 100%, 0 100%);
+                        clip-path: polygon(0 0, 100% 0%, 85% 50%, 100% 100%, 0 100%);
 
                     }
                 }
