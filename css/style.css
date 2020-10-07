@@ -356,7 +356,7 @@ button:focus {
 }
 /* line 285, ../scss/style.scss */
 .schedule-container .lectures-container .lecture .progress-bar .bar {
-  background-color: red;
+  background-color: #d80000;
   width: 0%;
   height: 100%;
   transition: width .3s linear;
