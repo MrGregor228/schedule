@@ -64,7 +64,7 @@ export const showTimes = () => {
                 } else return num;
             }
 
-            timer.textContent = "До конца " + addZeroToNumber(t.hours) + ":" + addZeroToNumber(t.minutes) + ":" + addZeroToNumber(t.seconds);
+            timer.textContent = "До кінця " + addZeroToNumber(t.hours) + ":" + addZeroToNumber(t.minutes) + ":" + addZeroToNumber(t.seconds);
 
             if (t.total <= 0) {
                 clearInterval(timerInterval);
@@ -83,8 +83,8 @@ export const showTimes = () => {
             mainString = `${hours}:${minutes}:${seconds}`;
 
         if (mainString <= lecturesStartTime[i]) {
-            console.log("Пара начнётся в " + lecturesStartTime[i].substr(0, 5));
-            item.textContent = "Пара начнётся в " + lecturesStartTime[i].substr(0, 5);
+            console.log("Пара почнеться в " + lecturesStartTime[i].substr(0, 5));
+            item.textContent = "Пара почнеться в " + lecturesStartTime[i].substr(0, 5);
         } else {
             setClock(deadline, item);
         }

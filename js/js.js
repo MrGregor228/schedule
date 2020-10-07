@@ -128,7 +128,7 @@ getData(url).then((data) => {
                     } else if (nowDateString < span__dateTime[i].textContent) {
                         for (let j = 0; j < document.getElementsByClassName('status').length; j++) {
                             // console.log(document.getElementsByClassName('status')[j]);
-                            document.getElementsByClassName('status')[j].textContent = "Пара начнётся в " + lecturesStartTime[j].substr(0, 5);
+                            document.getElementsByClassName('status')[j].textContent = "Пара почнеться в " + lecturesStartTime[j].substr(0, 5);
                         }
                     } else if (nowDateString > span__dateTime[i].textContent) {
                         for (let j = 0; j < document.getElementsByClassName('status').length; j++) {
