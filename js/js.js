@@ -1,3 +1,6 @@
+import {
+    showTimes
+} from "./showTimes.js";
 const getData = async function (url) {
     const response = await fetch(url);
     if (!response.ok) {
@@ -5,7 +8,11 @@ const getData = async function (url) {
     }
     return await response.json();
 };
-
+function addZeroToNumber(num) {
+    if (num <= 9) {
+        return '0' + num;
+    } else return num;
+}
 let span__dateTime = document.querySelectorAll(".date-time"),
 
     li__headings = document.querySelectorAll(".schedule-navigation-panel ul li"),
@@ -24,6 +31,11 @@ let span__dateTime = document.querySelectorAll(".date-time"),
         day: "numeric",
         year: "numeric"
     },
+    nowDateString = date.toLocaleString('ru', timeOptions).substr(0, 11),
+    showLectureTime = document.querySelectorAll('.status'),
+    nowDate = addZeroToNumber(date.getFullYear()) + "." + addZeroToNumber(date.getMonth() + 1) + "." + addZeroToNumber(date.getDate()),
+    lecturesDateTime = [`${nowDate} 10:20`, `${nowDate} 11:50`, `${nowDate} 13:50`, `${nowDate} 15:20`],
+    lecturesStartTime = ["09:00:00", "10:30:00", "12:30:00", "14:00:00"],
 
     url__first = "https://raw.githubusercontent.com/MrGregor228/different-jsons/master/timetable1.json",
     url__second = "https://raw.githubusercontent.com/MrGregor228/different-jsons/master/timetable2.json",
@@ -38,58 +50,8 @@ if (today__date >= 5 && today >= 1 && today__date < 12) {
     url = url__second;
     daysToChill = 0 || 5 || 6 || 7;
 }
-// else if (today__date >= 28 && today__date < 4) {
-//     url = url__first;
-// }
-function addZeroToNumber(num) {
-    if (num <= 9) {
-        return '0' + num;
-    } else return num;
-}
-
 
 getData(url).then((data) => {
-    let showLectureTime = document.querySelectorAll('.status'),
-        lecturesDateTime = ['2020-10-1 10:20', '2020-10-1 11:50', '2020-10-1 13:50', '2020-10-1 15:20'],
-        lecturesStartTime = ["09:00:00", "10:30:00", "12:30:00", "14:00:00"];
-
-    function getTimeRemaining(endtime) {
-        let t = Date.parse(endtime) - Date.parse(new Date()),
-            seconds = Math.floor((t / 1000) % 60),
-            minutes = Math.floor((t / 1000 / 60) % 60),
-            hours = Math.floor((t / (1000 * 60 * 60)));
-
-        return {
-            'total': t,
-            'hours': hours,
-            'minutes': minutes,
-            'seconds': seconds
-        };
-    }
-
-    function setClock(endtime, element) {
-        let timer = element,
-            timerInterval = setInterval(updateClock, 1000);
-
-        function updateClock() {
-            let t = getTimeRemaining(endtime);
-            timer.textContent = t.hours + ":" + t.minutes + ":" + t.seconds;
-
-            function addZeroToNumber(num) {
-                if (num <= 9) {
-                    return '0' + num;
-                } else return num;
-            }
-
-            timer.textContent = "До конца " + addZeroToNumber(t.hours) + ":" + addZeroToNumber(t.minutes) + ":" + addZeroToNumber(t.seconds);
-
-            if (t.total <= 0) {
-                clearInterval(timerInterval);
-
-                timer.textContent = 'Пара завершена';
-            }
-        }
-    }
 
     span__dateTime.forEach((item, i) => {
         item.textContent = data[i].date;
@@ -110,6 +72,8 @@ getData(url).then((data) => {
         }
     }
 
+
+
     li__buttons.forEach((item, i) => {
 
         item.addEventListener('click', () => {
@@ -125,7 +89,7 @@ getData(url).then((data) => {
                     setTimeout(() => {
                         chillCont.style.transform = "scale(1)";
                     }, 100);
-                } else if (url == url__second && i <= 1 || i >= 4) {
+                } else if (url == url__second && i == 0 || i >= 4) {
                     chillCont.style.display = "flex";
                     setTimeout(() => {
                         chillCont.style.transform = "scale(1)";
@@ -152,13 +116,27 @@ getData(url).then((data) => {
 								</div>
                             `);
                     }
+                    if (nowDateString == span__dateTime[i].textContent) {
+                        showTimes();
+                    } else if (nowDateString < span__dateTime[i].textContent) {
+                        for (let j = 0; j < document.getElementsByClassName('status').length; j++) {
+                            // console.log(document.getElementsByClassName('status')[j]);
+                            document.getElementsByClassName('status')[j].textContent = "Пара начнётся в " + lecturesStartTime[j].substr(0, 5);
+                        }
+                    } else if (nowDateString > span__dateTime[i].textContent) {
+                        for (let j = 0; j < document.getElementsByClassName('status').length; j++) {
+                            // console.log(document.getElementsByClassName('status')[j]);
+                            document.getElementsByClassName('status')[j].textContent = "Пара завершена";
+                        }
+                    }
+
                 }
             }, 200);
         });
     });
 
     if (today < 4) {
-        if (url = url__second && today == 1 || today >= 4) {
+        if (url == url__second && today == 1 || today >= 4) {
             chillCont.style.display = "flex";
             setTimeout(() => {
                 chillCont.style.transform = "scale(1)";
@@ -188,42 +166,11 @@ getData(url).then((data) => {
                     `);
                     }
                 }
+
             });
         }
 
-        let progress__bar = document.querySelectorAll('.progress-bar .bar');
-        lecturesEndTime = ["10:20:00", "11:50:00", "13:50:00", "15:20:00"];
-        setInterval(() => {
-            let newdate = new Date(),
-                hours = addZeroToNumber(newdate.getHours()),
-                minutes = addZeroToNumber(newdate.getMinutes()),
-                seconds = addZeroToNumber(newdate.getSeconds()),
-                mainString = `${hours}:${minutes}:${seconds}`;
-
-            for (let i = 0; i < progress__bar.length; i++) {
-                if (mainString >= lecturesEndTime[i]) {
-                    progress__bar[i].style.cssText = `width:100%`;
-                }
-            }
-        }, 1000);
-
-        showLectureTime.forEach((item, i) => {
-            let deadline = lecturesDateTime[i];
-
-            let dt = new Date(),
-                hours = addZeroToNumber(dt.getHours()),
-                minutes = addZeroToNumber(dt.getMinutes()),
-                seconds = addZeroToNumber(dt.getSeconds()),
-                mainString = `${hours}:${minutes}:${seconds}`;
-
-            if (mainString <= lecturesStartTime[i]) {
-                console.log("Пара начнётся в " + lecturesStartTime[i].substr(0, 5));
-                item.textContent = "Пара начнётся в " + lecturesStartTime[i].substr(0, 5);
-            } else {
-                setClock(deadline, item);
-            }
-
-        });
+        showTimes();
 
 
     } else if (url == url__first && today >= 4) {
