@@ -60,8 +60,6 @@ if (today__date >= 5 && today >= 1 && today__date < 12) {
 }
 
 getData(url).then((data) => {
-    console.log(data);
-
     span__dateTime.forEach((item, i) => {
         item.textContent = data[i].date;
     });
