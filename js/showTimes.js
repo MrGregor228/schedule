@@ -69,7 +69,7 @@ export const showTimes = () => {
             if (t.total <= 0) {
                 clearInterval(timerInterval);
 
-                timer.textContent = 'Пара завершена';
+                timer.textContent = 'Пара закінчена';
             }
         }
     }
