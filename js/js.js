@@ -10,8 +10,6 @@ const getData = async function (url) {
 };
 
 let span__dateTime = document.querySelectorAll(".date-time"),
-
-    li__headings = document.querySelectorAll(".schedule-navigation-panel ul li"),
     li__buttons = document.querySelectorAll(".schedule-navigation-panel ul li button"),
 
     lectures__container = document.querySelector('.lectures-container'),
@@ -74,19 +72,19 @@ getData(url).then((data) => {
             setTimeout(() => {
                 item.closest('li').classList.add('active');
 
-                if (url == url__first && i > 4) {
+                if (url == url__first && i > 3) {
                     chillCont.style.display = "flex";
                     setTimeout(() => {
                         chillCont.style.transform = "scale(1)";
                     }, 100);
 
-                } else if (url == url__second && i == 0 || i > 4) {
+                } else if (url == url__second && i == 0 || i > 3) {
                     chillCont.style.display = "flex";
                     setTimeout(() => {
                         chillCont.style.transform = "scale(1)";
                     }, 100);
                     
-                } else if (i < 5) {
+                } else if (i < 4) {
                     for (let j = 0; j < data[i].namesOfLessons.length; j++) {
                         lectures__container.insertAdjacentHTML('beforeend', `
 								<div class="lecture">
