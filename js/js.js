@@ -46,21 +46,14 @@ if (today__date >= 5 && today >= 1 && today__date < 12) {
 }
 
 getData(url).then((data) => {
-    // span__dateTime.forEach((item, i) => {
-    //     item.textContent = data[i].date;
-    // });
     showDates();
     let chillCont = document.querySelector('.chill-container');
-
-
 
     if (today == 0) {
         today = 7;
     } else {
         today = date.getDay();
     }
-
-
 
     li__buttons.forEach((item, i) => {
         item.addEventListener('click', () => {
@@ -158,10 +151,7 @@ getData(url).then((data) => {
 
             });
         }
-
         showTimes();
-
-
     } else if (url == url__first && today > 4) {
         chillCont.style.display = "flex";
         setTimeout(() => {
