@@ -1,14 +1,6 @@
 export const showTimes = () => {
 
-    let date = new Date(),
-        timeOptions = {
-            month: "short",
-            day: "numeric",
-            year: "numeric"
-        },
-        li__buttons = document.querySelectorAll('.schedule-navigation-panel ul li button'),
-        span_dateTime = document.querySelectorAll('.date-time'),
-        nowDateString = date.toLocaleString('ru', timeOptions).substr(0, 11);
+    let date = new Date();
 
     function addZeroToNumber(num) {
         if (num <= 9) {

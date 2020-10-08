@@ -8,22 +8,15 @@ const getData = async function (url) {
     }
     return await response.json();
 };
-function addZeroToNumber(num) {
-    if (num <= 9) {
-        return '0' + num;
-    } else return num;
-}
+
 let span__dateTime = document.querySelectorAll(".date-time"),
 
     li__headings = document.querySelectorAll(".schedule-navigation-panel ul li"),
     li__buttons = document.querySelectorAll(".schedule-navigation-panel ul li button"),
 
     lectures__container = document.querySelector('.lectures-container'),
-    lectures = document.querySelectorAll(".lecture"),
     numerator = document.querySelector('.numerator'),
     denumerator = document.querySelector('.denumerator'),
-
-    daysToChill = 5 || 6 || 7,
 
     date = new Date(),
     today = date.getDay(),
@@ -34,9 +27,6 @@ let span__dateTime = document.querySelectorAll(".date-time"),
         year: "numeric"
     },
     nowDateString = date.toLocaleString('ru', timeOptions).substr(0, 11),
-    showLectureTime = document.querySelectorAll('.status'),
-    nowDate = addZeroToNumber(date.getFullYear()) + "." + addZeroToNumber(date.getMonth() + 1) + "." + addZeroToNumber(date.getDate()),
-    lecturesDateTime = [`${nowDate} 10:20`, `${nowDate} 11:50`, `${nowDate} 13:50`, `${nowDate} 15:20`],
     lecturesStartTime = ["09:00:00", "10:30:00", "12:30:00", "14:00:00"],
 
     url__first = "https://raw.githubusercontent.com/MrGregor228/different-jsons/master/timetable1.json",
@@ -45,7 +35,6 @@ let span__dateTime = document.querySelectorAll(".date-time"),
 
 if (today__date >= 5 && today >= 1 && today__date < 12) {
     url = url__second;
-    daysToChill = 0 || 5 || 6 || 7;
     numerator.classList.remove('active');
     denumerator.classList.add('active');
 } else if (today__date >= 12 && today__date < 19) {
@@ -56,7 +45,6 @@ if (today__date >= 5 && today >= 1 && today__date < 12) {
     url = url__second;
     numerator.classList.remove('active');
     denumerator.classList.add('active');
-    daysToChill = 0 || 5 || 6 || 7;
 }
 
 getData(url).then((data) => {
