@@ -142,8 +142,8 @@ getData(url).then((data) => {
         });
     });
 
-    if (today < 4) {
-        if (url == url__second && today == 1 || today >= 4) {
+    if (today < 5) {
+        if (url == url__second && today == 1 || today > 4) {
             chillCont.style.display = "flex";
             setTimeout(() => {
                 chillCont.style.transform = "scale(1)";
@@ -180,12 +180,12 @@ getData(url).then((data) => {
         showTimes();
 
 
-    } else if (url == url__first && today >= 4) {
+    } else if (url == url__first && today > 4) {
         chillCont.style.display = "flex";
         setTimeout(() => {
             chillCont.style.transform = "scale(1)";
         }, 100);
-    } else if (url == url__second && today == 0 || today >= 4) {
+    } else if (url == url__second && today == 0 || today > 4) {
         chillCont.style.display = "flex";
         setTimeout(() => {
             chillCont.style.transform = "scale(1)";
