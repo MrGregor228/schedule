@@ -1,6 +1,6 @@
-import {
-    showTimes
-} from "./showTimes.js";
+import { showTimes } from "./showTimes.js";
+import { showDates } from './showDates.js';
+
 const getData = async function (url) {
     const response = await fetch(url);
     if (!response.ok) {
@@ -48,9 +48,10 @@ if (today__date >= 5 && today >= 1 && today__date < 12) {
 }
 
 getData(url).then((data) => {
-    span__dateTime.forEach((item, i) => {
-        item.textContent = data[i].date;
-    });
+    // span__dateTime.forEach((item, i) => {
+    //     item.textContent = data[i].date;
+    // });
+    showDates();
     let chillCont = document.querySelector('.chill-container');
 
 
@@ -61,16 +62,9 @@ getData(url).then((data) => {
         today = date.getDay();
     }
 
-    for (let i = 0; i < li__headings.length; i++) {
-        if (parseInt(data[i].date) == date.getDate()) {
-            li__headings[i].classList.add("active");
-        }
-    }
-
 
 
     li__buttons.forEach((item, i) => {
-
         item.addEventListener('click', () => {
             document.querySelectorAll('.lecture').forEach((item) => {
                 item.remove();
@@ -79,17 +73,20 @@ getData(url).then((data) => {
             document.getElementsByClassName('active')[0].classList.remove('active');
             setTimeout(() => {
                 item.closest('li').classList.add('active');
-                if (url == url__first && i >= 4) {
+
+                if (url == url__first && i > 4) {
                     chillCont.style.display = "flex";
                     setTimeout(() => {
                         chillCont.style.transform = "scale(1)";
                     }, 100);
-                } else if (url == url__second && i == 0 || i >= 4) {
+
+                } else if (url == url__second && i == 0 || i > 4) {
                     chillCont.style.display = "flex";
                     setTimeout(() => {
                         chillCont.style.transform = "scale(1)";
                     }, 100);
-                } else if (i < 4) {
+                    
+                } else if (i < 5) {
                     for (let j = 0; j < data[i].namesOfLessons.length; j++) {
                         lectures__container.insertAdjacentHTML('beforeend', `
 								<div class="lecture">
@@ -114,13 +111,12 @@ getData(url).then((data) => {
                     if (nowDateString == span__dateTime[i].textContent) {
                         showTimes();
                     } else if (nowDateString < span__dateTime[i].textContent) {
+                        console.log(nowDateString);
                         for (let j = 0; j < document.getElementsByClassName('status').length; j++) {
-                            // console.log(document.getElementsByClassName('status')[j]);
                             document.getElementsByClassName('status')[j].textContent = "Пара почнеться в " + lecturesStartTime[j].substr(0, 5);
                         }
                     } else if (nowDateString > span__dateTime[i].textContent) {
                         for (let j = 0; j < document.getElementsByClassName('status').length; j++) {
-                            // console.log(document.getElementsByClassName('status')[j]);
                             document.getElementsByClassName('status')[j].textContent = "Пара закінчена";
                         }
                     }
@@ -137,8 +133,8 @@ getData(url).then((data) => {
                 chillCont.style.transform = "scale(1)";
             }, 100);
         } else {
-            data.forEach((item) => {
-                if (parseInt(item.date) == date.getDate()) {
+            data.forEach((item,k) => {
+                if (parseInt(span__dateTime[k].textContent) == date.getDate()) {
                     for (let i = 0; i < item.namesOfLessons.length; i++) {
                         lectures__container.insertAdjacentHTML('beforeend', `
                             <div class="lecture">
