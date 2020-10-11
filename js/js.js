@@ -24,7 +24,7 @@ let span__dateTime = document.querySelectorAll(".date-time"),
         day: "numeric",
         year: "numeric"
     },
-    nowDateString = date.toLocaleString('ru', timeOptions).substr(0, 11),
+    nowDateString = date.toLocaleString('ru', timeOptions).substr(0, 13).trim(),
     lecturesStartTime = ["09:00:00", "10:30:00", "12:30:00", "14:00:00"],
 
     url__first = "https://raw.githubusercontent.com/MrGregor228/different-jsons/master/timetable1.json",
@@ -35,10 +35,12 @@ if (today__date >= 5 && today__date < 12) {
     url = url__second;
     numerator.classList.remove('active');
     denumerator.classList.add('active');
+    console.log(url);
 } else {
     url = url__first;
     numerator.classList.add('active');
     denumerator.classList.remove('active');
+    console.log(url);
 }
 
 getData(url).then((data) => {
@@ -74,6 +76,7 @@ getData(url).then((data) => {
                     }, 100);
                     
                 } else if (i < 4) {
+
                     for (let j = 0; j < data[i].namesOfLessons.length; j++) {
                         lectures__container.insertAdjacentHTML('beforeend', `
 								<div class="lecture">
@@ -98,7 +101,7 @@ getData(url).then((data) => {
                     if (nowDateString == span__dateTime[i].textContent) {
                         showTimes();
                     } else if (nowDateString < span__dateTime[i].textContent) {
-                        console.log(nowDateString);
+                        console.log(span__dateTime[i].textContent < nowDateString); // тут что-то нужно сделать
                         for (let j = 0; j < document.getElementsByClassName('status').length; j++) {
                             document.getElementsByClassName('status')[j].textContent = "Пара почнеться в " + lecturesStartTime[j].substr(0, 5);
                         }
