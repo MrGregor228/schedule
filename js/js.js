@@ -31,7 +31,7 @@ let span__dateTime = document.querySelectorAll(".date-time"),
     url__second = "https://raw.githubusercontent.com/MrGregor228/different-jsons/master/timetable2.json",
     url = "";
 
-if (today__date >= 5 && today__date < 12) {
+if (today__date >= 19 && today__date < 26) {
     url = url__second;
     numerator.classList.remove('active');
     denumerator.classList.add('active');
